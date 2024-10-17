@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  install:
+    aliases: [i]
+    desc: Install cli tools
+    cmds:
+      - |
+        cargo binstall \
+          cargo-watch \
+          cargo-udeps
+
+  watch:
+    desc: Watch and run
+    cmds:
+      - cargo watch -x run
+
+  udeps:
+    aliases: [deps]
+    desc: Find unused dependencies
+    cmds:
+      - cargo +nightly udeps
