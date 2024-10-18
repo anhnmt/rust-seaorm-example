@@ -6,9 +6,10 @@ tasks:
     desc: Install cli tools
     cmds:
       - |
-        cargo binstall \
+        cargo binstall -y \
           cargo-watch \
-          cargo-udeps
+          cargo-udeps \
+          sqlx-cli
 
   watch:
     desc: Watch and run
