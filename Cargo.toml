@@ -6,7 +6,10 @@ edition = "2021"
 [dependencies]
 tracing-subscriber = "0.3.18"
 tracing = "0.1.40"
-sqlx = "0.8.2"
+sqlx = { version = "0.8.2", features = ["postgres", "runtime-tokio"] }
+tokio = { version = "1.40.0", features = ["macros", "rt", "rt-multi-thread"] }
+anyhow = "1.0.90"
+clap = { version = "4.5.20", features = ["derive"] }
 
 # Minimizing Rust Binary Size
 # https://github.com/johnthagen/min-sized-rust
