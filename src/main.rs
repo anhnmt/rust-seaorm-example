@@ -13,6 +13,7 @@ struct Args {
 #[derive(Subcommand)]
 enum Command {
     Migrate,
+    Add { name: String },
 }
 
 #[tokio::main]
@@ -38,6 +39,9 @@ async fn main() -> anyhow::Result<()> {
         Some(Command::Migrate) => {
             migrate(&pool).await?
         }
+        Some(Command::Add { name }) => {
+            add_user(&pool, name).await?
+        }
         None => {
             tracing::info!("No command provided")
         }
@@ -56,5 +60,19 @@ async fn migrate(pool: &PgPool) -> anyhow::Result<()> {
     m.run(pool).await?;
 
     tracing::info!("Migrations ran successfully!");
+    Ok(())
+}
+
+async fn add_user(pool: &PgPool, user: String) -> anyhow::Result<()> {
+    sqlx::query!(
+        r#"
+        INSERT INTO users (name)
+        VALUES ($1)
+        "#,
+        user.trim()
+    )
+        .execute(pool)
+        .await?;
+
     Ok(())
 }
