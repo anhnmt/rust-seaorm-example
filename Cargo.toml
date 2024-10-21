@@ -10,6 +10,7 @@ sqlx = { version = "0.8.2", features = ["postgres", "runtime-tokio"] }
 tokio = { version = "1.40.0", features = ["macros", "rt", "rt-multi-thread"] }
 anyhow = "1.0.90"
 clap = { version = "4.5.20", features = ["derive"] }
+dotenvy = "0.15.7"
 
 # Minimizing Rust Binary Size
 # https://github.com/johnthagen/min-sized-rust

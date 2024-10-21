@@ -23,6 +23,9 @@ async fn main() -> anyhow::Result<()> {
 
     tracing::info!("Hello, world!");
 
+    // Load .env file
+    dotenvy::dotenv()?;
+
     let args = Args::parse();
     let pool = PgPool::connect(&env::var("DATABASE_URL")?).await?;
 
